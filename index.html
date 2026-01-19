@@ -1,0 +1,3141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline Adventure - Fun Educational Journey!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ========================================
+           CARTOON ADVENTURE - DESIGN SYSTEM
+        ======================================== */
+        :root {
+            /* Bright Cartoon Primary Colors */
+            --cartoon-red: #FF6B6B;
+            --cartoon-orange: #FF9F43;
+            --cartoon-yellow: #FECA57;
+            --cartoon-green: #1DD1A1;
+            --cartoon-blue: #54A0FF;
+            --cartoon-purple: #5F27CD;
+            --cartoon-pink: #FF9FF3;
+            --cartoon-teal: #00D2D3;
+
+            /* Fun Background Colors */
+            --bg-sky: #87CEEB;
+            --bg-sunshine: #FFEAA7;
+            --bg-mint: #DFF9FB;
+            --bg-peach: #FFD3B6;
+
+            /* Card & Surface Colors */
+            --card-white: #FFFFFF;
+            --card-cream: #FFFBF0;
+            --card-highlight: #FFF3E0;
+
+            /* Text Colors */
+            --text-dark: #2D3436;
+            --text-medium: #636E72;
+            --text-light: #B2BEC3;
+
+            /* Fun Gradients */
+            --gradient-rainbow: linear-gradient(135deg, #FF6B6B, #FF9F43, #FECA57, #1DD1A1, #54A0FF, #5F27CD);
+            --gradient-sunrise: linear-gradient(135deg, #FF9F43, #FF6B6B);
+            --gradient-ocean: linear-gradient(135deg, #54A0FF, #00D2D3);
+            --gradient-fun: linear-gradient(135deg, #FECA57, #FF9FF3);
+
+            /* Shadow & Depth */
+            --shadow-pop: 0 8px 0 rgba(0,0,0,0.15), 0 12px 20px rgba(0,0,0,0.1);
+            --shadow-float: 0 4px 0 rgba(0,0,0,0.12), 0 8px 15px rgba(0,0,0,0.08);
+            --shadow-small: 0 3px 0 rgba(0,0,0,0.1), 0 5px 10px rgba(0,0,0,0.05);
+
+            /* Border Radius - Extra Rounded! */
+            --radius-round: 20px;
+            --radius-bubble: 30px;
+            --radius-blob: 50% 50% 50% 50% / 60% 40% 60% 40%;
+
+            /* Animation */
+            --bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            --wiggle: cubic-bezier(0.36, 0.07, 0.19, 0.97);
+
+            /* Fun Sizes */
+            --header-height: 80px;
+        }
+
+        /* Reset & Base */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', -apple-system, sans-serif;
+            background: linear-gradient(180deg, #87CEEB 0%, #B8E3FF 50%, #D4F1F9 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Fun Background Pattern */
+        .bg-fun {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.8) 10%, transparent 10%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.6) 8%, transparent 8%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.4) 5%, transparent 5%),
+                linear-gradient(180deg, #87CEEB 0%, #B8E3FF 50%, #D4F1F9 100%);
+            background-size: 200px 200px, 250px 250px, 300px 300px, 100% 100%;
+            animation: floatBg 20s ease-in-out infinite;
+        }
+
+        @keyframes floatBg {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+
+        /* Floating Decorations */
+        .decoration {
+            position: fixed;
+            font-size: 2rem;
+            z-index: -1;
+            animation: floatDeco 6s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes floatDeco {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+        }
+
+        /* Timeline Container */
+        .timeline-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Fun Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--card-white);
+            border-bottom: 4px solid var(--cartoon-yellow);
+            padding: 0 2rem;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow-float);
+        }
+
+        /* Logo - Extra Fun! */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.5rem;
+            color: var(--cartoon-purple);
+            text-decoration: none;
+            transition: all 0.3s var(--bounce);
+        }
+
+        .logo:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-rainbow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-pop);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .logo-text {
+            text-shadow: 2px 2px 0 var(--cartoon-yellow);
+        }
+
+        /* Header Actions */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* Fun Search Box */
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            width: 220px;
+            padding: 0.65rem 1rem 0.65rem 2.5rem;
+            background: var(--card-highlight);
+            border: 3px solid var(--cartoon-orange);
+            border-radius: var(--radius-bubble);
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input::placeholder {
+            color: var(--text-light);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--cartoon-purple);
+            background: var(--card-white);
+            box-shadow: 0 0 0 4px rgba(95, 39, 205, 0.2);
+            width: 280px;
+        }
+
+        .search-box::before {
+            content: '🔍';
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+        }
+
+        /* Fun Nav Buttons */
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--card-white);
+            border: 3px solid var(--cartoon-blue);
+            border-radius: var(--radius-bubble);
+            color: var(--cartoon-blue);
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s var(--bounce);
+            text-decoration: none;
+        }
+
+        .nav-btn:hover {
+            background: var(--cartoon-blue);
+            border-color: var(--cartoon-blue);
+            color: white;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: var(--shadow-pop);
+        }
+
+        .nav-btn.active {
+            background: var(--cartoon-blue);
+            border-color: var(--cartoon-blue);
+            color: white;
+        }
+
+        /* Main Viewport */
+        .viewport {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Fun Level Headers */
+        .level-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .level-subtitle {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background: var(--cartoon-orange);
+            border-radius: var(--radius-bubble);
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: white;
+            margin-bottom: 0.75rem;
+            box-shadow: var(--shadow-small);
+            animation: wiggle 2s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        .level-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.5rem;
+            color: var(--cartoon-purple);
+            line-height: 1.2;
+            text-shadow: 3px 3px 0 var(--cartoon-yellow);
+            margin-bottom: 0.5rem;
+        }
+
+        .level-title span {
+            background: var(--gradient-rainbow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .level-desc {
+            color: var(--text-medium);
+            font-size: 1rem;
+            font-weight: 600;
+            background: var(--card-white);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-round);
+            display: inline-block;
+        }
+
+        /* Zoom Levels */
+        .zoom-level {
+            display: none;
+            animation: popIn 0.5s var(--bounce);
+        }
+
+        .zoom-level.active {
+            display: block;
+        }
+
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.8) rotate(-5deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+
+        /* ========================================
+           LANDING PAGE STYLES
+        ======================================== */
+        .landing-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        .landing-welcome {
+            margin-bottom: 2.5rem;
+            animation: floatDown 1s ease-out;
+        }
+
+        @keyframes floatDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .welcome-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .landing-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.75rem;
+            color: var(--cartoon-purple);
+            margin-bottom: 0.75rem;
+            text-shadow: 3px 3px 0 var(--cartoon-yellow);
+            line-height: 1.2;
+        }
+
+        .landing-title span {
+            background: var(--gradient-rainbow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .landing-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-medium);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 600;
+        }
+
+        .landing-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .landing-card {
+            background: var(--card-white);
+            border: 4px solid var(--cartoon-blue);
+            border-radius: var(--radius-round);
+            padding: 2rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s var(--bounce);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .landing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--gradient-rainbow);
+        }
+
+        .landing-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-pop);
+            border-color: var(--cartoon-purple);
+        }
+
+        .landing-card.timeline-card {
+            border-color: var(--cartoon-orange);
+        }
+
+        .landing-card.timeline-card::before {
+            background: var(--gradient-sunrise);
+        }
+
+        .landing-card.timeline-card:hover {
+            border-color: var(--cartoon-red);
+        }
+
+        .landing-card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .landing-card-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.5rem;
+            color: var(--cartoon-purple);
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-card .landing-card-title {
+            color: var(--cartoon-orange);
+        }
+
+        .landing-card-desc {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+
+        .landing-card-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--cartoon-blue);
+            border-radius: var(--radius-bubble);
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .landing-card:hover .landing-card-action {
+            background: var(--cartoon-purple);
+            transform: scale(1.05);
+        }
+
+        .timeline-card .landing-card-action {
+            background: var(--cartoon-orange);
+        }
+
+        .timeline-card:hover .landing-card-action {
+            background: var(--cartoon-red);
+        }
+
+        .btn-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .landing-card:hover .btn-arrow {
+            transform: translateX(5px);
+        }
+
+        /* Grids */
+        .grid {
+            display: grid;
+            gap: 0.875rem;
+        }
+
+        /* Fun Century Card */
+        .century-card {
+            background: var(--card-cream);
+            border: 4px solid var(--cartoon-green);
+            border-radius: var(--radius-round);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s var(--bounce);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .century-card::before {
+            content: '⭐';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 1.5rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .century-card:hover {
+            border-color: var(--cartoon-purple);
+            transform: translateY(-8px) rotate(2deg) scale(1.05);
+            box-shadow: var(--shadow-pop);
+        }
+
+        .century-card:hover::before {
+            opacity: 1;
+            transform: rotate(20deg);
+        }
+
+        .century-card.highlight {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            border-color: var(--cartoon-green);
+            border-width: 4px;
+        }
+
+        .century-card .card-number {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.75rem;
+            color: var(--cartoon-red);
+            margin-bottom: 0.25rem;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+        }
+
+        .century-card .card-range {
+            font-size: 0.85rem;
+            color: var(--text-medium);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .century-card .card-badge {
+            display: inline-block;
+            padding: 0.3rem 0.75rem;
+            border-radius: var(--radius-bubble);
+            font-size: 0.65rem;
+            font-weight: 800;
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+        }
+
+        .century-card .card-count {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            font-weight: 700;
+        }
+
+        .century-card .custom-count {
+            color: var(--cartoon-purple);
+            font-weight: 800;
+        }
+
+        /* Fun Decade Card */
+        .decade-card {
+            background: var(--card-highlight);
+            border: 3px solid var(--cartoon-orange);
+            border-radius: var(--radius-round);
+            padding: 1.25rem 0.75rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s var(--bounce);
+        }
+
+        .decade-card:hover {
+            background: var(--cartoon-orange);
+            border-color: var(--cartoon-orange);
+            color: white;
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: var(--shadow-pop);
+        }
+
+        .decade-card .card-range {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 0.2rem;
+        }
+
+        .decade-card .card-count {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .decade-card:hover .card-count {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Fun Year Card */
+        .year-card {
+            background: var(--card-cream);
+            border: 3px solid var(--cartoon-blue);
+            border-radius: var(--radius-round);
+            padding: 1rem 0.75rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s var(--bounce);
+        }
+
+        .year-card:hover {
+            background: var(--cartoon-blue);
+            border-color: var(--cartoon-blue);
+            color: white;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--shadow-pop);
+        }
+
+        .year-card .card-number {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 0.2rem;
+        }
+
+        .year-card .card-count {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .year-card:hover .card-count {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Fun Month Card */
+        .month-card {
+            display: flex;
+            align-items: center;
+            gap: 0.875rem;
+            background: var(--card-cream);
+            border: 3px solid var(--cartoon-pink);
+            border-radius: var(--radius-round);
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s var(--bounce);
+        }
+
+        .month-card:hover {
+            background: var(--cartoon-pink);
+            border-color: var(--cartoon-pink);
+            transform: translateX(8px) scale(1.02);
+            box-shadow: var(--shadow-pop);
+        }
+
+        .month-card .card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--cartoon-yellow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-small);
+        }
+
+        .month-card .card-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .month-card .card-name {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 0.1rem;
+        }
+
+        .month-card:hover .card-name {
+            color: white;
+        }
+
+        .month-card .card-count {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .month-card:hover .card-count {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* Fun Day Card */
+        .day-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--card-white);
+            border: 3px solid var(--cartoon-teal);
+            border-radius: var(--radius-round);
+            padding: 0.875rem 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s var(--bounce);
+            position: relative;
+        }
+
+        .day-card:hover {
+            background: var(--cartoon-teal);
+            border-color: var(--cartoon-teal);
+            transform: scale(1.15);
+            box-shadow: var(--shadow-pop);
+        }
+
+        .day-card.has-event {
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            border-color: var(--cartoon-blue);
+        }
+
+        .day-card.has-event:hover {
+            background: var(--cartoon-blue);
+        }
+
+        .day-card.today {
+            background: linear-gradient(135deg, var(--cartoon-yellow), var(--cartoon-orange));
+            border-color: var(--cartoon-orange);
+            animation: todayPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes todayPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 159, 67, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(255, 159, 67, 0); }
+        }
+
+        .day-card.today .card-number,
+        .day-card.today .card-count {
+            color: var(--text-dark);
+            font-weight: 800;
+        }
+
+        .day-card .card-number {
+            font-size: 1.35rem;
+            font-weight: 800;
+            margin-bottom: 0.15rem;
+        }
+
+        .day-card .card-count {
+            font-size: 0.55rem;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .day-card .event-star {
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Fun Category Card */
+        .category-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--card-cream);
+            border: 4px solid var(--cartoon-blue);
+            border-radius: var(--radius-round);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s var(--bounce);
+        }
+
+        .category-card:hover {
+            background: var(--cartoon-blue);
+            border-color: var(--cartoon-blue);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: var(--shadow-pop);
+        }
+
+        .category-card .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .category-card:hover .card-icon {
+            animation: spin 0.5s ease-in-out;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .category-card .card-name {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .category-card:hover .card-name {
+            color: white;
+        }
+
+        .category-card .card-count {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .category-card:hover .card-count {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .category-card .card-desc {
+            font-size: 0.65rem;
+            color: var(--text-light);
+            margin-top: 0.3rem;
+            font-weight: 600;
+        }
+
+        .category-card:hover .card-desc {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Fun Custom Facts Section */
+        .custom-facts-section {
+            background: var(--card-cream);
+            border: 4px dashed var(--cartoon-purple);
+            border-radius: var(--radius-round);
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .custom-facts-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px dotted var(--cartoon-pink);
+        }
+
+        .custom-facts-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.2rem;
+            color: var(--cartoon-purple);
+        }
+
+        .custom-fact-item {
+            background: var(--card-white);
+            border: 3px solid var(--cartoon-green);
+            border-radius: var(--radius-round);
+            padding: 1rem;
+            margin-bottom: 0.875rem;
+            transition: all 0.3s ease;
+        }
+
+        .custom-fact-item:hover {
+            border-color: var(--cartoon-orange);
+            box-shadow: var(--shadow-float);
+            transform: translateX(5px);
+        }
+
+        .custom-fact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .custom-fact-title {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .custom-fact-desc {
+            font-size: 0.85rem;
+            color: var(--text-medium);
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
+        }
+
+        .custom-fact-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 0.6rem;
+            padding-top: 0.6rem;
+            border-top: 2px dashed var(--cartoon-yellow);
+        }
+
+        .custom-fact-actions {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .custom-fact-actions button {
+            padding: 0.35rem 0.75rem;
+            background: var(--cartoon-blue);
+            border: 2px solid var(--cartoon-blue);
+            border-radius: var(--radius-round);
+            font-size: 0.7rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .custom-fact-actions button.edit-btn:hover {
+            background: var(--cartoon-green);
+            border-color: var(--cartoon-green);
+            color: white;
+        }
+
+        .custom-fact-actions button.delete-btn:hover {
+            background: var(--cartoon-red);
+            border-color: var(--cartoon-red);
+            color: white;
+        }
+
+        .no-facts-message {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            padding: 1.5rem;
+            font-weight: 700;
+            background: var(--card-highlight);
+            border-radius: var(--radius-round);
+        }
+
+        /* Fun Tags */
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            padding: 0.6rem;
+            border: 3px dashed var(--cartoon-blue);
+            border-radius: var(--radius-round);
+            background: var(--card-cream);
+            min-height: 52px;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .tags-container:focus-within {
+            border-color: var(--cartoon-purple);
+            box-shadow: 0 0 0 4px rgba(95, 39, 205, 0.2);
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.3rem 0.6rem;
+            background: var(--cartoon-orange);
+            border-radius: var(--radius-bubble);
+            font-size: 0.75rem;
+            color: white;
+            font-weight: 800;
+        }
+
+        .tag-remove {
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.9rem;
+            line-height: 1;
+            color: white;
+            transition: all 0.2s ease;
+        }
+
+        .tag-remove:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(1.1);
+        }
+
+        .tag-input {
+            flex: 1;
+            min-width: 150px;
+            border: none;
+            outline: none;
+            padding: 0.3rem;
+            font-size: 0.9rem;
+            background: transparent;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .tag-hint {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 0.4rem;
+            font-weight: 600;
+        }
+
+        /* Fun Era Badges */
+        .era-badge {
+            display: inline-block;
+            padding: 0.25rem 0.7rem;
+            border-radius: var(--radius-bubble);
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .era-badge.ancient { background: var(--cartoon-yellow); color: #E67E22; }
+        .era-badge.medieval { background: var(--cartoon-purple); color: white; }
+        .era-badge.renaissance { background: var(--cartoon-orange); color: white; }
+        .era-badge.modern { background: var(--cartoon-blue); color: white; }
+        .era-badge.contemporary { background: var(--cartoon-green); color: white; }
+
+        /* Fun Event Panel */
+        .event-panel {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--card-white);
+            border-top: 4px solid var(--cartoon-purple);
+            border-radius: var(--radius-round) var(--radius-round) 0 0;
+            padding: 1.5rem 2rem;
+            transform: translateY(100%);
+            transition: transform 0.4s var(--bounce);
+            z-index: 100;
+            box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .event-panel.active {
+            transform: translateY(0);
+        }
+
+        .event-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.6rem;
+        }
+
+        .event-panel-date {
+            font-size: 0.8rem;
+            color: var(--cartoon-purple);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 800;
+            background: var(--card-highlight);
+            padding: 0.3rem 0.8rem;
+            border-radius: var(--radius-bubble);
+        }
+
+        .event-panel-close {
+            width: 40px;
+            height: 40px;
+            background: var(--cartoon-red);
+            border: 3px solid var(--cartoon-red);
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s var(--bounce);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .event-panel-close:hover {
+            background: white;
+            color: var(--cartoon-red);
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .event-panel-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.5rem;
+            color: var(--cartoon-purple);
+            margin-bottom: 0.4rem;
+        }
+
+        .event-panel-desc {
+            color: var(--text-medium);
+            line-height: 1.6;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .event-panel-category {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: var(--radius-bubble);
+            margin-top: 0.75rem;
+            font-weight: 800;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .event-source {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        .event-source.custom {
+            color: var(--cartoon-green);
+            font-style: normal;
+            background: #E8F5E9;
+            padding: 0.2rem 0.5rem;
+            border-radius: var(--radius-sm);
+        }
+
+        /* Fun Modals */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(45, 52, 54, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: flex-start;
+            z-index: 200;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--card-cream);
+            border: 4px solid var(--cartoon-purple);
+            border-radius: var(--radius-round);
+            padding: 2rem;
+            max-width: 750px;
+            width: 100%;
+            max-height: calc(100vh - 4rem);
+            overflow-y: auto;
+            margin: auto;
+            animation: modalPop 0.4s var(--bounce);
+            box-shadow: var(--shadow-pop);
+        }
+
+        @keyframes modalPop {
+            0% { opacity: 0; transform: scale(0.8) rotate(-5deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px dashed var(--cartoon-pink);
+            position: sticky;
+            top: 0;
+            background: var(--card-cream);
+            z-index: 10;
+        }
+
+        .modal-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.4rem;
+            color: var(--cartoon-purple);
+        }
+
+        .modal-close {
+            width: 44px;
+            height: 44px;
+            background: var(--cartoon-red);
+            border: 3px solid var(--cartoon-red);
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s var(--bounce);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .modal-close:hover {
+            background: white;
+            color: var(--cartoon-red);
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        /* Fun Form Styles */
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--cartoon-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: var(--card-white);
+            border: 3px solid var(--cartoon-blue);
+            border-radius: var(--radius-round);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: var(--text-light);
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--cartoon-purple);
+            box-shadow: 0 0 0 4px rgba(95, 39, 205, 0.2);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .form-row-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .form-display {
+            padding: 0.75rem 1rem;
+            background: var(--cartoon-yellow);
+            border: 3px solid var(--cartoon-orange);
+            border-radius: var(--radius-round);
+            color: var(--text-dark);
+            font-weight: 800;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-rainbow);
+            border: none;
+            border-radius: var(--radius-bubble);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s var(--bounce);
+            box-shadow: var(--shadow-pop);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 0 rgba(0,0,0,0.15), 0 15px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Fun Add Fact Button */
+        .add-fact-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.9rem 1.5rem;
+            background: var(--gradient-rainbow);
+            border: none;
+            border-radius: var(--radius-bubble);
+            color: white;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s var(--bounce);
+            box-shadow: var(--shadow-pop);
+        }
+
+        .add-fact-btn:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 0 rgba(0,0,0,0.15), 0 15px 25px rgba(0,0,0,0.1);
+        }
+
+        .add-fact-btn.secondary {
+            background: var(--cartoon-cream);
+            border: 3px solid var(--cartoon-blue);
+            color: var(--cartoon-blue);
+            box-shadow: var(--shadow-small);
+        }
+
+        .add-fact-btn.secondary:hover {
+            background: var(--cartoon-blue);
+            color: white;
+        }
+
+        /* Fun Back Button */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.5rem 1rem;
+            background: var(--card-cream);
+            border: 3px solid var(--cartoon-green);
+            border-radius: var(--radius-bubble);
+            color: var(--cartoon-green);
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s var(--bounce);
+        }
+
+        .back-btn:hover {
+            background: var(--cartoon-green);
+            border-color: var(--cartoon-green);
+            color: white;
+            transform: translateX(-5px) scale(1.05);
+        }
+
+        /* Back Navigation */
+        .back-nav {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Fun Footer Stats */
+        .footer {
+            background: var(--card-white);
+            border-top: 4px solid var(--cartoon-yellow);
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat {
+            text-align: center;
+            background: var(--card-highlight);
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--radius-round);
+            border: 3px solid var(--cartoon-orange);
+        }
+
+        .stat-number {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.5rem;
+            color: var(--cartoon-purple);
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.2rem;
+            font-weight: 700;
+        }
+
+        /* Grid Layouts */
+        .centuries-grid {
+            grid-template-columns: repeat(7, 1fr);
+        }
+
+        .decades-grid {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        .years-grid {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        .months-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .days-grid {
+            grid-template-columns: repeat(7, 1fr);
+        }
+
+        .categories-grid {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        /* Fun Tag Suggestions */
+        .tag-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.6rem;
+        }
+
+        .tag-suggestion {
+            padding: 0.3rem 0.75rem;
+            background: var(--cartoon-yellow);
+            border: 2px solid var(--cartoon-orange);
+            border-radius: var(--radius-bubble);
+            font-size: 0.7rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-dark);
+        }
+
+        .tag-suggestion:hover {
+            background: var(--cartoon-orange);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .centuries-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .header {
+                padding: 0 1.5rem;
+            }
+
+            .search-box input {
+                width: 160px;
+            }
+
+            .search-box input:focus {
+                width: 200px;
+            }
+
+            .centuries-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+
+            .decades-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .years-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                height: auto;
+                padding: 1rem 1.5rem;
+                gap: 1rem;
+            }
+
+            .header-actions {
+                width: 100%;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .search-box {
+                order: 3;
+                width: 100%;
+            }
+
+            .search-box input {
+                width: 100% !important;
+            }
+
+            .viewport {
+                padding: 1.25rem;
+            }
+
+            .level-title {
+                font-size: 1.75rem;
+            }
+
+            .centuries-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .century-card {
+                padding: 1rem 0.75rem;
+            }
+
+            .century-card .card-number {
+                font-size: 1.25rem;
+            }
+
+            .century-card .card-range {
+                font-size: 0.7rem;
+            }
+
+            .century-card .card-badge {
+                font-size: 0.6rem;
+                padding: 0.2rem 0.5rem;
+            }
+
+            .decades-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .years-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .months-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .days-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .form-row, .form-row-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .modal {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+
+            .footer {
+                gap: 1.5rem;
+                padding: 1rem 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 1.25rem;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .centuries-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .century-card {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .century-card .card-number {
+                font-size: 1.1rem;
+            }
+
+            .century-card .card-range {
+                font-size: 0.65rem;
+            }
+
+            .decades-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .years-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .months-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .days-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .category-card {
+                padding: 1rem 0.75rem;
+            }
+
+            .category-card .card-icon {
+                font-size: 2rem;
+            }
+
+            .category-card .card-name {
+                font-size: 0.75rem;
+            }
+
+            .level-title {
+                font-size: 1.5rem;
+            }
+
+            .back-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .back-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .footer {
+                gap: 1rem;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+            height: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--card-cream);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--cartoon-orange);
+            border-radius: 6px;
+            border: 3px solid var(--card-cream);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--cartoon-purple);
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--cartoon-yellow);
+            color: var(--text-dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- Fun Background -->
+    <div class="bg-fun"></div>
+    
+    <!-- Floating Decorations -->
+    <div class="decoration" style="top: 15%; left: 5%; animation-delay: 0s;">🌟</div>
+    <div class="decoration" style="top: 25%; right: 8%; animation-delay: 1s;">☁️</div>
+    <div class="decoration" style="top: 45%; left: 3%; animation-delay: 2s;">🎈</div>
+    <div class="decoration" style="top: 60%; right: 5%; animation-delay: 3s;">🌈</div>
+    <div class="decoration" style="top: 75%; left: 8%; animation-delay: 4s;">⭐</div>
+    <div class="decoration" style="top: 85%; right: 10%; animation-delay: 5s;">🎨</div>
+
+    <div class="timeline-container">
+        <!-- Fun Header -->
+        <div class="header">
+            <div class="logo" onclick="goToLevel('home')">
+                <div class="logo-icon">⏰</div>
+                <span class="logo-text">Timeline Adventure!</span>
+            </div>
+            <div class="header-actions">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search adventures...">
+                </div>
+                <button class="nav-btn" onclick="goToLevel('home')">
+                    <span>📁</span> Categories
+                </button>
+                <button class="nav-btn" onclick="goToTimeline()">
+                    <span>⏳</span> Timeline
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Viewport -->
+        <div class="viewport">
+            <div class="container">
+                
+                <!-- Level 1: Landing Page - Home -->
+                <div class="zoom-level active" id="level-landing">
+                    <div class="landing-container">
+                        <!-- Welcome Banner -->
+                        <div class="landing-welcome">
+                            <h1 class="landing-title">Welcome to <span>Timeline Adventure!</span></h1>
+                            <p class="landing-subtitle">Embark on an exciting journey through time and discover amazing facts from history!</p>
+                        </div>
+
+                        <!-- Navigation Cards -->
+                        <div class="landing-nav">
+                            <div class="landing-card" onclick="goToCategories()">
+                                <div class="landing-card-icon">📚</div>
+                                <h2 class="landing-card-title">Browse by Category</h2>
+                                <p class="landing-card-desc">Explore facts organized by topics like Science, History, Arts, Sports & more!</p>
+                                <div class="landing-card-action">
+                                    <span class="btn-text">Start Exploring</span>
+                                    <span class="btn-arrow">→</span>
+                                </div>
+                            </div>
+
+                            <div class="landing-card timeline-card" onclick="goToTimeline()">
+                                <div class="landing-card-icon">⏰</div>
+                                <h2 class="landing-card-title">Browse by Timeline</h2>
+                                <p class="landing-card-desc">Travel through centuries and discover what happened in any era of history!</p>
+                                <div class="landing-card-action">
+                                    <span class="btn-text">Start Journey</span>
+                                    <span class="btn-arrow">→</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Level 2: Home - All Categories -->
+                <div class="zoom-level" id="level-home">
+                    <div class="back-nav">
+                        <button class="back-btn" onclick="goToLevel('landing')">← Back to Home</button>
+                    </div>
+                    <div class="grid categories-grid" id="homeCategoriesGrid"></div>
+                </div>
+
+                <!-- Level 2: Category View - All facts for a category -->
+                <div class="zoom-level" id="level-category-all">
+                    <div class="level-header">
+                        <div class="level-subtitle">📚 All About...</div>
+                        <h2 class="level-title" id="allCategoryTitle">Category Name</h2>
+                    </div>
+                    <div class="back-nav">
+                        <button class="back-btn" onclick="goToLevel('home')">← All Categories</button>
+                    </div>
+                    <div class="custom-facts-section" id="allCategoryFactsSection">
+                        <div class="custom-facts-header">
+                            <span class="custom-facts-title">📰 News & Facts</span>
+                        </div>
+                        <div id="allCategoryFactsList"></div>
+                    </div>
+                </div>
+
+                <!-- Level 2: Centuries -->
+                <div class="zoom-level" id="level-centuries">
+                    <div class="grid centuries-grid" id="centuriesGrid"></div>
+                    
+                    <!-- Custom Facts Section for Century -->
+                    <div class="custom-facts-section" id="centuryFactsSection" style="display: none;">
+                        <div class="custom-facts-header">
+                            <span class="custom-facts-title">🌟 Your Discoveries</span>
+                            <button class="add-fact-btn secondary" style="padding: 0.5rem 1rem; font-size: 0.85rem;" onclick="openAddFactModal(currentCentury)">➕ Add New!</button>
+                        </div>
+                        <div id="centuryFactsList"></div>
+                    </div>
+                </div>
+
+                <!-- Level 2: Decades -->
+                <div class="zoom-level" id="level-decades">
+                    <div class="level-header">
+                        <div class="level-subtitle">🎯 Pick a Decade!</div>
+                        <h2 class="level-title" id="centuryTitle">1st Century</h2>
+                    </div>
+                    <div class="back-nav">
+                        <button class="back-btn" onclick="goToLevel('centuries')">← Back to Centuries</button>
+                    </div>
+                    <div class="grid decades-grid" id="decadesGrid"></div>
+                </div>
+
+                <!-- Level 3: Years -->
+                <div class="zoom-level" id="level-years">
+                    <div class="level-header">
+                        <div class="level-subtitle">📅 Select a Year!</div>
+                        <h2 class="level-title" id="decadeTitle">0s</h2>
+                    </div>
+                    <div class="back-nav">
+                        <button class="back-btn" onclick="goToLevel('centuries')">← Centuries</button>
+                        <button class="back-btn" onclick="goToLevel('decades')">← Decades</button>
+                    </div>
+                    <div class="grid years-grid" id="yearsGrid"></div>
+                </div>
+
+                <!-- Level 4: Months -->
+                <div class="zoom-level" id="level-months">
+                    <div class="level-header">
+                        <div class="level-subtitle">🗓️ Which Month?</div>
+                        <h2 class="level-title" id="yearTitle">Year 0</h2>
+                    </div>
+                    <div class="back-nav">
+                        <button class="back-btn" onclick="goToLevel('centuries')">← Centuries</button>
+                        <button class="back-btn" onclick="goToLevel('years')">← Years</button>
+                    </div>
+                    <div class="grid months-grid" id="monthsGrid"></div>
+                </div>
+
+                <!-- Level 5: Days Grid -->
+                <div class="zoom-level" id="level-calendar">
+                    <div class="level-header">
+                        <div class="level-subtitle">🎯 Pick a Day!</div>
+                        <h2 class="level-title" id="monthTitle">January Year 0</h2>
+                    </div>
+                    <div class="back-nav">
+                        <button class="back-btn" onclick="goToLevel('centuries')">← Centuries</button>
+                        <button class="back-btn" onclick="goToLevel('months')">← Months</button>
+                    </div>
+                    <div class="grid days-grid" id="daysGrid"></div>
+                </div>
+
+                <!-- Level 6: News Categories -->
+                <div class="zoom-level" id="level-categories">
+                    <div class="level-header">
+                        <div class="level-subtitle">📁 Choose Category</div>
+                        <h2 class="level-title" id="dayTitle">January 1, Year 0</h2>
+                    </div>
+                    <div class="back-nav">
+                        <button class="back-btn" onclick="goToLevel('centuries')">← Centuries</button>
+                        <button class="back-btn" onclick="goToLevel('calendar')">← Days</button>
+                    </div>
+                    <div class="grid categories-grid" id="categoriesGrid"></div>
+                </div>
+
+                <!-- Level 7: Create News/Fact -->
+                <div class="zoom-level" id="level-create">
+                    <div class="level-header">
+                        <div class="level-subtitle">✏️ Create Something New!</div>
+                        <h2 class="level-title" id="categoryTitle">Category Name</h2>
+                    </div>
+                    <div class="back-nav">
+                        <button class="back-btn" onclick="goToLevel('centuries')">← Centuries</button>
+                        <button class="back-btn" onclick="goToLevel('categories')">← Categories</button>
+                    </div>
+                    <div class="custom-facts-section" id="categoryFactsSection">
+                        <div class="custom-facts-header">
+                            <span class="custom-facts-title">📝 Existing Adventures</span>
+                        </div>
+                        <div id="categoryFactsList"></div>
+                    </div>
+                    <button class="add-fact-btn" style="margin-top:1.5rem;width:100%;" onclick="openCreateFactForm()">
+                        <span>✨</span> Create New Fact/News!
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Create Fact Modal -->
+        <div class="modal-overlay" id="createFactModal">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="createFactModalTitle">✨ Create News/Fact ✨</h3>
+                    <button class="modal-close" onclick="closeCreateFactModal()">×</button>
+                </div>
+                <form id="createFactForm" onsubmit="submitCreateFact(event)">
+                    <input type="hidden" id="createFactId" value="">
+                    <input type="hidden" id="createFactCategory" value="">
+                    
+                    <!-- Category -->
+                    <div class="form-group">
+                        <label class="form-label">📁 Category</label>
+                        <div id="createFactCategoryDisplay" class="form-display"></div>
+                    </div>
+                    
+                    <!-- Date -->
+                    <div class="form-group">
+                        <label class="form-label">📅 Date</label>
+                        <div id="createFactDateDisplay" class="form-display"></div>
+                    </div>
+                    
+                    <!-- Headline -->
+                    <div class="form-group">
+                        <label class="form-label" for="createFactHeadline">📢 Headline *</label>
+                        <input type="text" id="createFactHeadline" class="form-input" placeholder="Exciting news headline!" required>
+                    </div>
+                    
+                    <!-- Summary -->
+                    <div class="form-group">
+                        <label class="form-label" for="createFactSummary">📝 Summary *</label>
+                        <textarea id="createFactSummary" class="form-textarea" placeholder="Brief summary of the news" required></textarea>
+                    </div>
+                    
+                    <!-- Key Facts -->
+                    <div class="form-group">
+                        <label class="form-label" for="createFactKeyFacts">🔑 Key Facts</label>
+                        <textarea id="createFactKeyFacts" class="form-textarea" placeholder="Key facts about this news (one per line)" style="min-height:100px;"></textarea>
+                    </div>
+                    
+                    <!-- Important Place Date Data -->
+                    <div class="form-group">
+                        <label class="form-label" for="createFactImportantData">📍 Important Data</label>
+                        <textarea id="createFactImportantData" class="form-textarea" placeholder="Important locations, dates, or numerical data mentioned" style="min-height:100px;"></textarea>
+                    </div>
+                    
+                    <!-- Detailed Info -->
+                    <div class="form-group">
+                        <label class="form-label" for="createFactDetailedInfo">📚 Detailed Information</label>
+                        <textarea id="createFactDetailedInfo" class="form-textarea" placeholder="Complete detailed information about the news/fact" style="min-height:120px;"></textarea>
+                    </div>
+                    
+                    <!-- Source -->
+                    <div class="form-group">
+                        <label class="form-label" for="createFactSource">📰 Source</label>
+                        <input type="text" id="createFactSource" class="form-input" placeholder="News source (e.g., PTI, ANI)">
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">💾 Save My Creation!</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Event Panel -->
+        <div class="event-panel" id="eventPanel">
+            <div class="event-panel-header">
+                <span class="event-panel-date" id="eventPanelDate"></span>
+                <button class="event-panel-close" onclick="closeEventPanel()">×</button>
+            </div>
+            <div class="event-panel-title" id="eventPanelTitle"></div>
+            <div class="event-panel-desc" id="eventPanelDesc"></div>
+            <div class="event-panel-category" id="eventPanelCategory"></div>
+            <div class="event-source" id="eventSource"></div>
+        </div>
+
+        <!-- Add Fact Modal -->
+        <div class="modal-overlay" id="addFactModal">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modalTitle">🌟 Add New Fact</h3>
+                    <button class="modal-close" onclick="closeAddFactModal()">×</button>
+                </div>
+                <form id="addFactForm" onsubmit="submitFact(event)">
+                    <input type="hidden" id="editFactId" value="">
+                    
+                    <!-- Title -->
+                    <div class="form-group">
+                        <label class="form-label" for="factTitle">🎉 Title *</label>
+                        <input type="text" id="factTitle" class="form-input" placeholder="Event title" required>
+                    </div>
+                    
+                    <!-- Description -->
+                    <div class="form-group">
+                        <label class="form-label" for="factDescription">📖 Description *</label>
+                        <textarea id="factDescription" class="form-textarea" placeholder="Brief description of the event" required></textarea>
+                    </div>
+                    
+                    <!-- Key Points -->
+                    <div class="form-group">
+                        <label class="form-label" for="factKeyPoints">🔑 Key Points</label>
+                        <textarea id="factKeyPoints" class="form-textarea" placeholder="Key points about this event (one per line)"></textarea>
+                    </div>
+                    
+                    <!-- Highlights -->
+                    <div class="form-group">
+                        <label class="form-label" for="factHighlights">⭐ Highlights</label>
+                        <textarea id="factHighlights" class="form-textarea" placeholder="Notable highlights or achievements"></textarea>
+                    </div>
+                    
+                    <!-- Tags -->
+                    <div class="form-group">
+                        <label class="form-label">🏷️ Tags * (Select or type)</label>
+                        <div class="tags-container" id="tagsContainer">
+                            <input type="text" class="tag-input" id="tagInput" placeholder="Type and press Enter...">
+                        </div>
+                        <p class="tag-hint">Press Enter or comma to add a tag</p>
+                        <div class="tag-suggestions">
+                            <span class="tag-suggestion" onclick="addTagSuggestion('Ancient')">🏛️ Ancient</span>
+                            <span class="tag-suggestion" onclick="addTagSuggestion('Medieval')">⚔️ Medieval</span>
+                            <span class="tag-suggestion" onclick="addTagSuggestion('Renaissance')">🎨 Renaissance</span>
+                            <span class="tag-suggestion" onclick="addTagSuggestion('Modern')">🏙️ Modern</span>
+                            <span class="tag-suggestion" onclick="addTagSuggestion('Contemporary')">🚀 Contemporary</span>
+                            <span class="tag-suggestion" onclick="addTagSuggestion('War')">💥 War</span>
+                            <span class="tag-suggestion" onclick="addTagSuggestion('Science')">🔬 Science</span>
+                            <span class="tag-suggestion" onclick="addTagSuggestion('Culture')">🎭 Culture</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Category (Century) -->
+                    <div class="form-group">
+                        <label class="form-label" for="factCentury">🗓️ Category (Century) *</label>
+                        <select id="factCentury" class="form-select" onchange="onCenturyChange()" required>
+                            <option value="">Select a century</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Sub Category 1: Decade -->
+                    <div class="form-group">
+                        <label class="form-label" for="factDecade">🎯 Sub Category 1 (Decade) *</label>
+                        <select id="factDecade" class="form-select" onchange="onDecadeChange()" required disabled>
+                            <option value="">Select a decade</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Sub Category 2: Year -->
+                    <div class="form-group">
+                        <label class="form-label" for="factYear">📅 Sub Category 2 (Year) *</label>
+                        <select id="factYear" class="form-select" onchange="onYearChange()" required disabled>
+                            <option value="">Select a year</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Sub Category 3: Month -->
+                    <div class="form-group">
+                        <label class="form-label" for="factMonth">🗓️ Sub Category 3 (Month) *</label>
+                        <select id="factMonth" class="form-select" onchange="onMonthChange()" required disabled>
+                            <option value="">Select a month</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Sub Category 4: Day -->
+                    <div class="form-group">
+                        <label class="form-label" for="factDay">✨ Sub Category 4 (Day) *</label>
+                        <select id="factDay" class="form-select" required disabled>
+                            <option value="">Select a date</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">💾 Save My Fact!</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // ========================================
+        // CARTOON ADVENTURE - TIMELINE DATA & LOGIC
+        // ========================================
+
+        // Timeline Data (Empty - users add their own facts)
+        const timelineData = {};
+
+        // State
+        let currentLevel = 'landing';
+        let currentCentury = null;
+        let currentDecade = null;
+        let currentYear = null;
+        let currentMonth = null;
+        let currentDay = null;
+        let currentCategory = null;
+        let currentAllCategory = null;
+        
+        // Custom facts storage
+        let customFacts = JSON.parse(localStorage.getItem('timelineCustomFacts') || '[]');
+        
+        // Tags management
+        let currentTags = [];
+
+        // Month data
+        const months = [
+            { name: 'January', value: '01', icon: '❄️' },
+            { name: 'February', value: '02', icon: '💕' },
+            { name: 'March', value: '03', icon: '🌸' },
+            { name: 'April', value: '04', icon: '🌱' },
+            { name: 'May', value: '05', icon: '🌺' },
+            { name: 'June', value: '06', icon: '☀️' },
+            { name: 'July', value: '07', icon: '🎆' },
+            { name: 'August', value: '08', icon: '🌻' },
+            { name: 'September', value: '09', icon: '🍂' },
+            { name: 'October', value: '10', icon: '🎃' },
+            { name: 'November', value: '11', icon: '🦃' },
+            { name: 'December', value: '12', icon: '🎄' }
+        ];
+
+        // News categories
+        const newsCategories = [
+            { id: 'rbi', name: 'RBI', icon: '🏦' },
+            { id: 'sebi', name: 'SEBI', icon: '📊' },
+            { id: 'nabard', name: 'NABARD', icon: '🌾' },
+            { id: 'finance', name: 'FINANCE', icon: '💰' },
+            { id: 'international', name: 'INTERNATIONAL', icon: '🌍' },
+            { id: 'national', name: 'NATIONAL', icon: '🇮🇳' },
+            { id: 'states', name: 'STATES', icon: '🗺️' },
+            { id: 'schemes', name: 'SCHEMES', icon: '📋' },
+            { id: 'reports', name: 'REPORTS', icon: '📑' },
+            { id: 'indices', name: 'INDICES', icon: '📈' },
+            { id: 'science', name: 'SCIENCE', icon: '🔬' },
+            { id: 'defence', name: 'DEFENCE', icon: '🛡️' },
+            { id: 'events', name: 'EVENTS', icon: '🎪' },
+            { id: 'awards', name: 'AWARDS', icon: '🏆' },
+            { id: 'appointment', name: 'APPOINTMENT', icon: '👔' },
+            { id: 'important_days', name: 'IMPORTANT DAYS', icon: '📅' },
+            { id: 'death', name: 'DEATH', icon: '🕯️' },
+            { id: 'books', name: 'BOOKS', icon: '📚' },
+            { id: 'sports', name: 'SPORTS', icon: '⚽' }
+        ];
+
+        // Era names mapping
+        const eraNames = {
+            ancient: '🏛️ Ancient Era',
+            medieval: '⚔️ Medieval Era',
+            renaissance: '🎨 Renaissance Era',
+            modern: '🏙️ Modern Era',
+            contemporary: '🚀 Contemporary Era'
+        };
+
+        // Century info
+        const centuryInfo = {
+            1: { era: 'ancient', eraLabel: 'Ancient' },
+            2: { era: 'ancient', eraLabel: 'Roman' },
+            3: { era: 'ancient', eraLabel: 'Crisis' },
+            4: { era: 'ancient', eraLabel: 'Christian' },
+            5: { era: 'medieval', eraLabel: 'Fall of Rome' },
+            6: { era: 'medieval', eraLabel: 'Byzantine' },
+            7: { era: 'medieval', eraLabel: 'Islamic' },
+            8: { era: 'medieval', eraLabel: 'Carolingian' },
+            9: { era: 'medieval', eraLabel: 'Viking' },
+            10: { era: 'medieval', eraLabel: 'Medieval' },
+            11: { era: 'medieval', eraLabel: 'Crusades' },
+            12: { era: 'medieval', eraLabel: 'High Med.' },
+            13: { era: 'medieval', eraLabel: 'Mongol' },
+            14: { era: 'medieval', eraLabel: 'Black Death' },
+            15: { era: 'renaissance', eraLabel: 'Renaissance' },
+            16: { era: 'renaissance', eraLabel: 'Reformation' },
+            17: { era: 'renaissance', eraLabel: 'Scientific' },
+            18: { era: 'modern', eraLabel: 'Enlightenment' },
+            19: { era: 'modern', eraLabel: 'Industrial' },
+            20: { era: 'modern', eraLabel: 'World Wars' },
+            21: { era: 'contemporary', eraLabel: 'Digital' }
+        };
+
+        // DOM references
+        const DOM = {
+            centuriesGrid: document.getElementById('centuriesGrid'),
+            decadesGrid: document.getElementById('decadesGrid'),
+            yearsGrid: document.getElementById('yearsGrid'),
+            monthsGrid: document.getElementById('monthsGrid'),
+            calendarDays: document.getElementById('daysGrid'),
+            eventPanel: document.getElementById('eventPanel'),
+            searchInput: document.getElementById('searchInput'),
+            addFactModal: document.getElementById('addFactModal'),
+            createFactModal: document.getElementById('createFactModal'),
+            tagsContainer: document.getElementById('tagsContainer'),
+            tagInput: document.getElementById('tagInput')
+        };
+
+        // Tags functions
+        function handleTagInput(event) {
+            if (event.key === 'Enter' || event.key === ',') {
+                event.preventDefault();
+                const value = DOM.tagInput.value.trim();
+                if (value) {
+                    addTag(value);
+                }
+            } else if (event.key === 'Backspace' && DOM.tagInput.value === '' && currentTags.length > 0) {
+                removeTag(currentTags.length - 1);
+            }
+        }
+
+        function addTagSuggestion(tag) {
+            if (!currentTags.includes(tag)) {
+                currentTags.push(tag);
+                renderTags();
+            }
+        }
+
+        function addTag(value) {
+            let tag = value.replace(/,/g, '').trim();
+            tag = tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase();
+            
+            if (currentTags.includes(tag)) {
+                DOM.tagInput.value = '';
+                return;
+            }
+            
+            currentTags.push(tag);
+            renderTags();
+            DOM.tagInput.value = '';
+        }
+
+        function removeTag(index) {
+            currentTags.splice(index, 1);
+            renderTags();
+        }
+
+        function renderTags() {
+            const existingTags = DOM.tagsContainer.querySelectorAll('.tag');
+            existingTags.forEach(tag => tag.remove());
+            
+            currentTags.forEach((tag, index) => {
+                const tagEl = document.createElement('span');
+                tagEl.className = 'tag';
+                tagEl.innerHTML = `${tag}<button class="tag-remove" onclick="removeTag(${index})">×</button>`;
+                DOM.tagsContainer.insertBefore(tagEl, DOM.tagInput);
+            });
+        }
+
+        function clearTags() {
+            currentTags = [];
+            renderTags();
+        }
+
+        function getFactCategoryFromTags(tags) {
+            const tagToCategory = {
+                'Ancient': 'ancient',
+                'Medieval': 'medieval',
+                'Renaissance': 'renaissance',
+                'Modern': 'modern',
+                'Contemporary': 'contemporary',
+                'War': 'war',
+                'Science': 'science',
+                'Culture': 'culture'
+            };
+            
+            for (const tag of tags) {
+                if (tagToCategory[tag]) {
+                    return tagToCategory[tag];
+                }
+            }
+            return 'modern';
+        }
+
+        // Custom facts functions
+        function saveCustomFacts() {
+            localStorage.setItem('timelineCustomFacts', JSON.stringify(customFacts));
+        }
+
+        function getCustomFactsForDate(dateStr) {
+            return customFacts.filter(fact => fact.date === dateStr);
+        }
+
+        function getCustomFactsForYear(year) {
+            const yearStr = String(year).padStart(4, '0');
+            return customFacts.filter(fact => fact.date.startsWith(yearStr));
+        }
+
+        function getCustomFactsForCentury(century) {
+            const startYear = (century === 1) ? 0 : (century - 1) * 100 + 1;
+            const endYear = Math.min(century * 100, 2026);
+            return customFacts.filter(fact => {
+                const factYear = parseInt(fact.date.split('-')[0]);
+                return factYear >= startYear && factYear <= endYear;
+            });
+        }
+
+        function countEventsForCentury(century) {
+            const startYear = (century === 1) ? 0 : (century - 1) * 100 + 1;
+            const endYear = Math.min(century * 100, 2026);
+            let count = 0;
+            for (let year = startYear; year <= endYear; year++) {
+                const yearStr = String(year).padStart(4, '0');
+                Object.keys(timelineData).forEach(date => {
+                    if (date.startsWith(yearStr)) {
+                        count += timelineData[date].length;
+                    }
+                });
+            }
+            count += getCustomFactsForCentury(century).length;
+            return count;
+        }
+
+        function countEventsForDecade(startYear) {
+            let count = 0;
+            for (let year = startYear; year < startYear + 10; year++) {
+                const yearStr = String(year).padStart(4, '0');
+                Object.keys(timelineData).forEach(date => {
+                    if (date.startsWith(yearStr)) {
+                        count += timelineData[date].length;
+                    }
+                });
+            }
+            count += customFacts.filter(fact => {
+                const factYear = parseInt(fact.date.split('-')[0]);
+                return factYear >= startYear && factYear < startYear + 10;
+            }).length;
+            return count;
+        }
+
+        function countEventsForYear(year) {
+            const yearStr = String(year).padStart(4, '0');
+            let count = 0;
+            Object.keys(timelineData).forEach(date => {
+                if (date.startsWith(yearStr)) {
+                    count += timelineData[date].length;
+                }
+            });
+            count += getCustomFactsForYear(year).length;
+            return count;
+        }
+
+        function countEventsForMonth(year, month) {
+            const monthStr = String(month + 1).padStart(2, '0');
+            const yearStr = String(year).padStart(4, '0');
+            let count = 0;
+            Object.keys(timelineData).forEach(date => {
+                if (date.startsWith(`${yearStr}-${monthStr}`)) {
+                    count += timelineData[date].length;
+                }
+            });
+            count += customFacts.filter(fact => {
+                const parts = fact.date.split('-');
+                const factYear = parseInt(parts[0]);
+                const factMonth = parseInt(parts[1]) - 1;
+                return factYear === year && factMonth === month;
+            }).length;
+            return count;
+        }
+
+        function formatDate(dateStr) {
+            const parts = dateStr.split('-');
+            const year = parseInt(parts[0]);
+            const month = parseInt(parts[1]) - 1;
+            const day = parseInt(parts[2]);
+            return new Date(year, month, day).toLocaleDateString('en-US', { 
+                weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' 
+            });
+        }
+
+        // Navigation functions
+        function goToLevel(level) {
+            closeEventPanel();
+            document.getElementById(`level-${currentLevel}`).classList.remove('active');
+            document.getElementById(`level-${level}`).classList.add('active');
+            currentLevel = level;
+        }
+
+        function goToTimeline() {
+            renderCenturies();
+            goToLevel('centuries');
+        }
+
+        function goToCategories() {
+            renderHomeCategories();
+            goToLevel('home');
+        }
+
+        function renderCenturies() {
+            let html = '';
+            for (let c = 1; c <= 21; c++) {
+                const count = countEventsForCentury(c);
+                const info = centuryInfo[c];
+                const customCount = getCustomFactsForCentury(c).length;
+                const highlight = 'highlight';
+                
+                html += `
+                    <div class="century-card ${highlight}" onclick="selectCentury(${c})">
+                        <div class="card-number">${c}${c === 1 ? 'st' : c === 2 ? 'nd' : c === 3 ? 'rd' : 'th'}</div>
+                        <div class="card-range">${c === 1 ? '0-100' : (c - 1) * 100 + 1 + '-' + Math.min(c * 100, 2026)}</div>
+                        <span class="card-badge era-badge ${info.era}">${info.eraLabel}</span>
+                        <div class="card-count">${count} adventures${customCount > 0 ? ` (<span class="custom-count">${customCount} yours!</span>)` : ''}</div>
+                    </div>
+                `;
+            }
+            DOM.centuriesGrid.innerHTML = html;
+        }
+
+        function selectCentury(century) {
+            currentCentury = century;
+            const info = centuryInfo[century];
+            document.getElementById('centuryTitle').innerHTML = `${century}${century === 1 ? 'st' : century === 2 ? 'nd' : century === 3 ? 'rd' : 'th'} Century <span class="era-badge ${info.era}" style="margin-left:0.5rem;font-size:0.7rem;">${info.eraLabel}</span>`;
+            
+            const startYear = (century === 1) ? 0 : (century - 1) * 100 + 1;
+            const endYear = Math.min(century * 100, 2026);
+            const numDecades = Math.ceil((endYear - startYear + 1) / 10);
+            
+            let html = '';
+            for (let i = 0; i < numDecades; i++) {
+                const decadeStart = startYear + (i * 10);
+                const count = countEventsForDecade(decadeStart);
+                const decadeLabel = decadeStart === 0 ? '0s' : decadeStart + 's';
+                const highlight = 'highlight';
+                
+                html += `
+                    <div class="decade-card ${highlight}" onclick="selectDecade(${decadeStart})">
+                        <div class="card-range">${decadeLabel}</div>
+                        <div class="card-count">${count} adventures</div>
+                    </div>
+                `;
+            }
+            DOM.decadesGrid.innerHTML = html;
+            
+            showCenturyCustomFacts(century);
+            
+            goToLevel('decades');
+        }
+
+        function showCenturyCustomFacts(century) {
+            const section = document.getElementById('centuryFactsSection');
+            const list = document.getElementById('centuryFactsList');
+            const facts = getCustomFactsForCentury(century);
+            
+            if (facts.length === 0) {
+                section.style.display = 'none';
+                return;
+            }
+            
+            section.style.display = 'block';
+            
+            let html = '';
+            facts.forEach(fact => {
+                const tagsHtml = fact.tags && fact.tags.length > 0 
+                    ? `<div style="margin-top:0.5rem;display:flex;flex-wrap:wrap;gap:0.25rem;">${fact.tags.map(t => `<span style="background:rgba(255, 159, 67, 0.2);color:#E67E22;padding:0.15rem 0.35rem;border-radius:15px;font-size:0.65rem;font-weight:700;">${t}</span>`).join('')}</div>`
+                    : '';
+                
+                html += `
+                    <div class="custom-fact-item">
+                        <div class="custom-fact-title">🎉 ${fact.title}</div>
+                        <div class="custom-fact-desc">${fact.description}</div>
+                        ${tagsHtml}
+                        <div class="custom-fact-meta">
+                            <span>📅 ${formatDate(fact.date)}</span>
+                            <div class="custom-fact-actions">
+                                <button class="edit-btn" onclick="editFact('${fact.id}')">Edit</button>
+                                <button class="delete-btn" onclick="deleteFact('${fact.id}')">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            list.innerHTML = html;
+        }
+
+        function renderHomeCategories() {
+            const grid = document.getElementById('homeCategoriesGrid');
+            
+            const categoryCounts = {};
+            customFacts.forEach(fact => {
+                if (fact.category) {
+                    categoryCounts[fact.category] = (categoryCounts[fact.category] || 0) + 1;
+                }
+            });
+            
+            Object.keys(timelineData).forEach(date => {
+                timelineData[date].forEach(event => {
+                    if (event.category) {
+                        categoryCounts[event.category] = (categoryCounts[event.category] || 0) + 1;
+                    }
+                });
+            });
+            
+            let html = '';
+            newsCategories.forEach(category => {
+                const count = categoryCounts[category.id] || 0;
+                html += `
+                    <div class="category-card" onclick="showAllCategoryFacts('${category.id}')">
+                        <div class="card-icon">${category.icon}</div>
+                        <div class="card-name">${category.name}</div>
+                        <div class="card-count">${count} items</div>
+                    </div>
+                `;
+            });
+            
+            grid.innerHTML = html;
+        }
+
+        function showAllCategoryFacts(categoryId) {
+            currentAllCategory = categoryId;
+            const category = newsCategories.find(c => c.id === categoryId);
+            
+            if (!category) return;
+            
+            document.getElementById('allCategoryTitle').innerHTML = `${category.icon} ${category.name}`;
+            
+            const allFacts = [];
+            
+            customFacts.filter(fact => fact.category === categoryId).forEach(fact => {
+                allFacts.push({ ...fact, isCustom: true });
+            });
+            
+            Object.keys(timelineData).forEach(date => {
+                timelineData[date].forEach(event => {
+                    if (event.category === categoryId) {
+                        allFacts.push({ 
+                            date: date, 
+                            title: event.title, 
+                            description: event.description, 
+                            category: event.category,
+                            isCustom: false 
+                        });
+                    }
+                });
+            });
+            
+            allFacts.sort((a, b) => {
+                return new Date(b.date) - new Date(a.date);
+            });
+            
+            renderAllCategoryFactsList(allFacts, category);
+            
+            goToLevel('category-all');
+        }
+
+        function renderAllCategoryFactsList(facts, category) {
+            const list = document.getElementById('allCategoryFactsList');
+            
+            let html = '';
+            
+            if (facts.length === 0) {
+                html = '<div class="no-facts-message">🎈 No adventures found for this category yet! Be the first to add one!</div>';
+            } else {
+                facts.forEach(fact => {
+                    const tagsHtml = fact.tags && fact.tags.length > 0 
+                        ? `<div style="margin-top:0.5rem;display:flex;flex-wrap:wrap;gap:0.25rem;">${fact.tags.map(t => `<span style="background:rgba(255, 159, 67, 0.2);color:#E67E22;padding:0.15rem 0.35rem;border-radius:15px;font-size:0.65rem;font-weight:700;">${t}</span>`).join('')}</div>`
+                        : '';
+                    
+                    html += `
+                        <div class="custom-fact-item">
+                            <div class="custom-fact-title">🎉 ${fact.title}</div>
+                            <div class="custom-fact-desc">${fact.description}</div>
+                            ${tagsHtml}
+                            <div class="custom-fact-meta">
+                                <span>📅 ${formatDate(fact.date)}</span>
+                                ${fact.isCustom ? `<span style="color:#5F27CD;font-weight:700;">✨ Yours!</span>` : `<span>📚 Built-in</span>`}
+                            </div>
+                            ${fact.isCustom ? `
+                            <div class="custom-fact-actions" style="margin-top:0.5rem;">
+                                <button class="edit-btn" onclick="editFact('${fact.id}')">Edit</button>
+                                <button class="delete-btn" onclick="deleteFact('${fact.id}')">Delete</button>
+                            </div>
+                            ` : ''}
+                        </div>
+                    `;
+                });
+            }
+            
+            list.innerHTML = html;
+        }
+
+        function selectDecade(decade) {
+            currentDecade = decade;
+            document.getElementById('decadeTitle').textContent = (decade === 0 ? '0s' : decade + 's');
+            
+            let html = '';
+            for (let year = decade; year < decade + 10 && year <= 2026; year++) {
+                const count = countEventsForYear(year);
+                const highlight = 'highlight';
+                
+                html += `
+                    <div class="year-card ${highlight}" onclick="selectYear(${year})">
+                        <div class="card-number">${year}</div>
+                        <div class="card-count">${count} adventures</div>
+                    </div>
+                `;
+            }
+            DOM.yearsGrid.innerHTML = html;
+            goToLevel('years');
+        }
+
+        function selectYear(year) {
+            currentYear = year;
+            document.getElementById('yearTitle').textContent = year;
+            
+            let html = '';
+            months.forEach((month, index) => {
+                const count = countEventsForMonth(year, index);
+                html += `
+                    <div class="month-card" onclick="selectMonth(${index})">
+                        <div class="card-icon">${month.icon || month.name[0]}</div>
+                        <div class="card-info">
+                            <div class="card-name">${month.name}</div>
+                            <div class="card-count">${count} adventures</div>
+                        </div>
+                    </div>
+                `;
+            });
+            DOM.monthsGrid.innerHTML = html;
+            goToLevel('months');
+        }
+
+        function selectMonth(month) {
+            currentMonth = month;
+            renderDays(currentYear, month);
+            goToLevel('calendar');
+        }
+
+        function renderDays(year, month) {
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const today = new Date();
+            const isCurrentMonth = today.getFullYear() === year && today.getMonth() === month;
+            const todayDate = today.getDate();
+            
+            document.getElementById('monthTitle').textContent = `${months[month].name} ${year}`;
+            
+            let html = '';
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dateStr = `${String(year).padStart(4, '0')}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                const events = timelineData[dateStr];
+                const customEvents = getCustomFactsForDate(dateStr);
+                const hasEvents = (events && events.length > 0) || (customEvents.length > 0);
+                const isToday = isCurrentMonth && day === todayDate;
+                
+                let classes = 'day-card highlight';
+                if (hasEvents) classes += ' has-event';
+                if (isToday) classes += ' today';
+                
+                html += `
+                    <div class="${classes}" onclick="openDayCategories('${dateStr}')">
+                        <div class="card-number">${day}</div>
+                        <div class="card-count">${hasEvents ? '✨' : ''}</div>
+                        ${hasEvents ? '<div class="event-star">⭐</div>' : ''}
+                    </div>
+                `;
+            }
+            
+            DOM.calendarDays.innerHTML = html;
+        }
+
+        function openDayCategories(dateStr) {
+            currentDay = dateStr;
+            const parts = dateStr.split('-');
+            const year = parseInt(parts[0]);
+            const month = parseInt(parts[1]) - 1;
+            const day = parseInt(parts[2]);
+            
+            document.getElementById('dayTitle').textContent = `${months[month].name} ${day}, Year ${year}`;
+            
+            renderCategories(dateStr);
+            
+            goToLevel('categories');
+        }
+
+        function renderCategories(dateStr) {
+            const grid = document.getElementById('categoriesGrid');
+            
+            let html = '';
+            newsCategories.forEach(category => {
+                html += `
+                    <div class="category-card" onclick="selectNewsCategory('${category.id}')">
+                        <div class="card-icon">${category.icon}</div>
+                        <div class="card-name">${category.name}</div>
+                        <div class="card-desc">Tap to add facts!</div>
+                    </div>
+                `;
+            });
+            
+            grid.innerHTML = html;
+        }
+
+        function selectNewsCategory(categoryId) {
+            currentCategory = categoryId;
+            const category = newsCategories.find(c => c.id === categoryId);
+            
+            if (!category) return;
+            
+            document.getElementById('categoryTitle').innerHTML = `${category.icon} ${category.name}`;
+            
+            renderCategoryFacts(currentDay, categoryId);
+            
+            goToLevel('create');
+        }
+
+        function renderCategoryFacts(dateStr, categoryId) {
+            const list = document.getElementById('categoryFactsList');
+            
+            const events = timelineData[dateStr] || [];
+            const customEvents = getCustomFactsForDate(dateStr);
+            
+            let html = '';
+            
+            customEvents.forEach(fact => {
+                html += `
+                    <div class="custom-fact-item">
+                        <div class="custom-fact-title">🎉 ${fact.title}</div>
+                        <div class="custom-fact-desc">${fact.description}</div>
+                        <div class="custom-fact-meta">
+                            <span>📅 ${formatDate(fact.date)}</span>
+                            <div class="custom-fact-actions">
+                                <button class="edit-btn" onclick="editFact('${fact.id}')">Edit</button>
+                                <button class="delete-btn" onclick="deleteFact('${fact.id}')">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            if (html === '') {
+                html = '<div class="no-facts-message">🎈 No adventures added here yet! Tap the button below to create one!</div>';
+            }
+            
+            list.innerHTML = html;
+        }
+
+        function openCreateFactForm() {
+            if (!currentDay || !currentCategory) {
+                alert('🎯 Please select a date and category first!');
+                return;
+            }
+            
+            const category = newsCategories.find(c => c.id === currentCategory);
+            
+            document.getElementById('createFactModalTitle').textContent = `✨ Create ${category.name} News/Fact ✨`;
+            document.getElementById('createFactCategory').value = currentCategory;
+            document.getElementById('createFactCategoryDisplay').innerHTML = `${category.icon} ${category.name}`;
+            document.getElementById('createFactDateDisplay').textContent = formatDate(currentDay);
+            
+            document.getElementById('createFactId').value = '';
+            document.getElementById('createFactHeadline').value = '';
+            document.getElementById('createFactSummary').value = '';
+            document.getElementById('createFactKeyFacts').value = '';
+            document.getElementById('createFactImportantData').value = '';
+            document.getElementById('createFactDetailedInfo').value = '';
+            document.getElementById('createFactSource').value = '';
+            
+            document.getElementById('createFactModal').classList.add('active');
+        }
+
+        function closeCreateFactModal() {
+            document.getElementById('createFactModal').classList.remove('active');
+        }
+
+        function submitCreateFact(event) {
+            event.preventDefault();
+            
+            const id = document.getElementById('createFactId').value;
+            const headline = document.getElementById('createFactHeadline').value.trim();
+            const summary = document.getElementById('createFactSummary').value.trim();
+            const keyFacts = document.getElementById('createFactKeyFacts').value.trim();
+            const importantData = document.getElementById('createFactImportantData').value.trim();
+            const detailedInfo = document.getElementById('createFactDetailedInfo').value.trim();
+            const source = document.getElementById('createFactSource').value.trim();
+            const category = document.getElementById('createFactCategory').value;
+            
+            if (!headline || !summary) {
+                alert('🎯 Please fill in headline and summary!');
+                return;
+            }
+            
+            const newFact = {
+                id: id || 'news_' + Date.now(),
+                title: headline,
+                description: summary,
+                keyFacts: keyFacts,
+                importantData: importantData,
+                detailedInfo: detailedInfo,
+                source: source,
+                category: category,
+                date: currentDay,
+                isNews: true,
+                createdAt: new Date().toISOString()
+            };
+            
+            if (id) {
+                const index = customFacts.findIndex(f => f.id === id);
+                if (index !== -1) {
+                    customFacts[index] = newFact;
+                }
+            } else {
+                customFacts.push(newFact);
+            }
+            
+            saveCustomFacts();
+            closeCreateFactModal();
+            
+            renderCategoryFacts(currentDay, currentCategory);
+            
+            renderCenturies();
+            initStats();
+        }
+
+        function showEvent(dateStr) {
+            const events = timelineData[dateStr];
+            const customEvents = getCustomFactsForDate(dateStr);
+            const allEvents = [...(events || []), ...customEvents];
+            
+            if (allEvents.length === 0) return;
+            
+            const event = allEvents[0];
+            document.getElementById('eventPanelDate').textContent = formatDate(dateStr);
+            document.getElementById('eventPanelTitle').textContent = event.title;
+            document.getElementById('eventPanelDesc').textContent = event.description;
+            document.getElementById('eventPanelCategory').textContent = eraNames[event.category] || event.category;
+            document.getElementById('eventPanelCategory').className = `event-panel-category ${event.category}`;
+            
+            const sourceEl = document.getElementById('eventSource');
+            if (customEvents.includes(event)) {
+                sourceEl.textContent = '✨ Your custom fact!';
+                sourceEl.className = 'event-source custom';
+                if (event.tags && event.tags.length > 0) {
+                    sourceEl.innerHTML = '🏷️ Tags: ' + event.tags.map(t => `<span style="background:rgba(255, 159, 67, 0.2);color:#E67E22;padding:0.1rem 0.3rem;border-radius:10px;font-size:0.7rem;margin:0 0.2rem;">${t}</span>`).join('');
+                }
+            } else {
+                sourceEl.textContent = '📚 Built-in adventure!';
+                sourceEl.className = 'event-source';
+            }
+            
+            DOM.eventPanel.classList.add('active');
+        }
+
+        function closeEventPanel() {
+            DOM.eventPanel.classList.remove('active');
+        }
+
+        // Modal functions
+        function populateCenturies() {
+            const select = document.getElementById('factCentury');
+            select.innerHTML = '<option value="">🏛️ Select a century</option>';
+            for (let c = 1; c <= 21; c++) {
+                const range = c === 1 ? '0-100' : (c - 1) * 100 + 1 + '-' + Math.min(c * 100, 2026);
+                const suffix = c === 1 ? 'st' : c === 2 ? 'nd' : c === 3 ? 'rd' : 'th';
+                select.innerHTML += `<option value="${c}">${c}${suffix} Century (${range})</option>`;
+            }
+        }
+
+        function onCenturyChange() {
+            const century = parseInt(document.getElementById('factCentury').value);
+            const decadeSelect = document.getElementById('factDecade');
+            const yearSelect = document.getElementById('factYear');
+            const monthSelect = document.getElementById('factMonth');
+            const daySelect = document.getElementById('factDay');
+            
+            decadeSelect.innerHTML = '<option value="">🎯 Select a decade</option>';
+            decadeSelect.disabled = true;
+            yearSelect.innerHTML = '<option value="">📅 Select a year</option>';
+            yearSelect.disabled = true;
+            monthSelect.innerHTML = '<option value="">🗓️ Select a month</option>';
+            monthSelect.disabled = true;
+            daySelect.innerHTML = '<option value="">✨ Select a date</option>';
+            daySelect.disabled = true;
+            
+            if (century) {
+                decadeSelect.disabled = false;
+                const startYear = century === 1 ? 0 : (century - 1) * 100 + 1;
+                const endYear = Math.min(century * 100, 2026);
+                
+                for (let i = 0; i < 10; i++) {
+                    const decadeStart = startYear + (i * 10);
+                    if (decadeStart <= endYear) {
+                        const decadeEnd = Math.min(decadeStart + 9, endYear);
+                        decadeSelect.innerHTML += `<option value="${decadeStart}">${decadeStart === 0 ? '0s' : decadeStart + 's'} (${decadeStart}-${decadeEnd})</option>`;
+                    }
+                }
+            }
+        }
+
+        function onDecadeChange() {
+            const decade = parseInt(document.getElementById('factDecade').value);
+            const century = parseInt(document.getElementById('factCentury').value);
+            const yearSelect = document.getElementById('factYear');
+            const monthSelect = document.getElementById('factMonth');
+            const daySelect = document.getElementById('factDay');
+            
+            yearSelect.innerHTML = '<option value="">📅 Select a year</option>';
+            yearSelect.disabled = true;
+            monthSelect.innerHTML = '<option value="">🗓️ Select a month</option>';
+            monthSelect.disabled = true;
+            daySelect.innerHTML = '<option value="">✨ Select a date</option>';
+            daySelect.disabled = true;
+            
+            if (decade && century) {
+                yearSelect.disabled = false;
+                const endYear = Math.min(century * 100, 2026);
+                
+                for (let year = decade; year <= endYear && year < decade + 10; year++) {
+                    yearSelect.innerHTML += `<option value="${year}">${year}</option>`;
+                }
+            }
+        }
+
+        function onYearChange() {
+            const year = parseInt(document.getElementById('factYear').value);
+            const monthSelect = document.getElementById('factMonth');
+            const daySelect = document.getElementById('factDay');
+            
+            monthSelect.innerHTML = '<option value="">🗓️ Select a month</option>';
+            monthSelect.disabled = true;
+            daySelect.innerHTML = '<option value="">✨ Select a date</option>';
+            daySelect.disabled = true;
+            
+            if (year) {
+                monthSelect.disabled = false;
+                months.forEach(month => {
+                    monthSelect.innerHTML += `<option value="${month.value}">${month.name}</option>`;
+                });
+            }
+        }
+
+        function onMonthChange() {
+            const year = parseInt(document.getElementById('factYear').value);
+            const month = parseInt(document.getElementById('factMonth').value);
+            const daySelect = document.getElementById('factDay');
+            
+            daySelect.innerHTML = '<option value="">✨ Select a date</option>';
+            daySelect.disabled = true;
+            
+            if (year && month) {
+                daySelect.disabled = false;
+                const daysInMonth = new Date(year, month, 0).getDate();
+                for (let day = 1; day <= daysInMonth; day++) {
+                    daySelect.innerHTML += `<option value="${day}">${day}</option>`;
+                }
+            }
+        }
+
+        function openAddFactModal(century = null) {
+            const modal = DOM.addFactModal;
+            const form = document.getElementById('addFactForm');
+            const modalTitle = document.getElementById('modalTitle');
+            
+            form.reset();
+            document.getElementById('editFactId').value = '';
+            
+            clearTags();
+            
+            modalTitle.textContent = '🌟 Add New Fact';
+            
+            populateCenturies();
+            
+            document.getElementById('factDecade').innerHTML = '<option value="">🎯 Select a decade</option>';
+            document.getElementById('factDecade').disabled = true;
+            document.getElementById('factYear').innerHTML = '<option value="">📅 Select a year</option>';
+            document.getElementById('factYear').disabled = true;
+            document.getElementById('factMonth').innerHTML = '<option value="">🗓️ Select a month</option>';
+            document.getElementById('factMonth').disabled = true;
+            document.getElementById('factDay').innerHTML = '<option value="">✨ Select a date</option>';
+            document.getElementById('factDay').disabled = true;
+            
+            modal.classList.add('active');
+        }
+
+        function closeAddFactModal() {
+            DOM.addFactModal.classList.remove('active');
+        }
+
+        function editFact(factId) {
+            const fact = customFacts.find(f => f.id === factId);
+            if (!fact) return;
+            
+            const modal = DOM.addFactModal;
+            const form = document.getElementById('addFactForm');
+            const modalTitle = document.getElementById('modalTitle');
+            
+            document.getElementById('editFactId').value = fact.id;
+            document.getElementById('factTitle').value = fact.title || '';
+            document.getElementById('factDescription').value = fact.description || '';
+            document.getElementById('factKeyPoints').value = fact.keyPoints || '';
+            document.getElementById('factHighlights').value = fact.highlights || '';
+            
+            currentTags = fact.tags ? [...fact.tags] : [];
+            renderTags();
+            
+            const parts = fact.date.split('-');
+            const year = parseInt(parts[0]);
+            const month = parseInt(parts[1]);
+            const day = parseInt(parts[2]);
+            const century = Math.ceil(year / 100) || 1;
+            const decade = Math.floor(year / 10) * 10;
+            
+            populateCenturies();
+            document.getElementById('factCentury').value = century;
+            
+            setTimeout(() => {
+                onCenturyChange();
+                document.getElementById('factDecade').value = decade;
+                
+                setTimeout(() => {
+                    onDecadeChange();
+                    document.getElementById('factYear').value = year;
+                    
+                    setTimeout(() => {
+                        onYearChange();
+                        document.getElementById('factMonth').value = String(month).padStart(2, '0');
+                        
+                        setTimeout(() => {
+                            onMonthChange();
+                            document.getElementById('factDay').value = day;
+                        }, 100);
+                    }, 100);
+                }, 100);
+            }, 100);
+            
+            modalTitle.textContent = '✏️ Edit Fact';
+            modal.classList.add('active');
+        }
+
+        function submitFact(event) {
+            event.preventDefault();
+            
+            const editId = document.getElementById('editFactId').value;
+            const title = document.getElementById('factTitle').value.trim();
+            const description = document.getElementById('factDescription').value.trim();
+            const keyPoints = document.getElementById('factKeyPoints').value.trim();
+            const highlights = document.getElementById('factHighlights').value.trim();
+            const century = document.getElementById('factCentury').value;
+            const decade = document.getElementById('factDecade').value;
+            const year = document.getElementById('factYear').value;
+            const month = document.getElementById('factMonth').value;
+            const day = document.getElementById('factDay').value;
+            
+            if (!century || !decade || !year || !month || !day) {
+                alert('🎯 Please complete all date selections!');
+                return;
+            }
+            
+            if (currentTags.length === 0) {
+                alert('🏷️ Please add at least one tag!');
+                return;
+            }
+            
+            const dateStr = `${String(parseInt(year)).padStart(4, '0')}-${month}-${String(day).padStart(2, '0')}`;
+            const category = getFactCategoryFromTags(currentTags);
+            
+            if (editId) {
+                const index = customFacts.findIndex(f => f.id === editId);
+                if (index !== -1) {
+                    customFacts[index] = {
+                        ...customFacts[index],
+                        title,
+                        description,
+                        keyPoints,
+                        highlights,
+                        tags: [...currentTags],
+                        category,
+                        date: dateStr,
+                        century: parseInt(century)
+                    };
+                }
+            } else {
+                const newFact = {
+                    id: 'custom_' + Date.now(),
+                    title,
+                    description,
+                    keyPoints,
+                    highlights,
+                    tags: [...currentTags],
+                    category,
+                    date: dateStr,
+                    century: parseInt(century),
+                    createdAt: new Date().toISOString()
+                };
+                customFacts.push(newFact);
+            }
+            
+            saveCustomFacts();
+            closeAddFactModal();
+            
+            renderCenturies();
+            if (currentCentury) {
+                showCenturyCustomFacts(currentCentury);
+            }
+            initStats();
+        }
+
+        function deleteFact(factId) {
+            if (!confirm('🗑️ Are you sure you want to delete this adventure?')) return;
+            
+            customFacts = customFacts.filter(f => f.id !== factId);
+            saveCustomFacts();
+            
+            renderCenturies();
+            if (currentCentury) {
+                showCenturyCustomFacts(currentCentury);
+            }
+            initStats();
+        }
+
+        function setupSearch() {
+            DOM.searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                if (query.length < 2) return;
+                
+                const results = [];
+                
+                Object.keys(timelineData).forEach(date => {
+                    timelineData[date].forEach(event => {
+                        if (event.title.toLowerCase().includes(query) ||
+                            event.description.toLowerCase().includes(query)) {
+                            results.push({ date, ...event, source: 'built-in' });
+                        }
+                    });
+                });
+                
+                customFacts.forEach(fact => {
+                    if (fact.title.toLowerCase().includes(query) ||
+                        fact.description.toLowerCase().includes(query)) {
+                        results.push({ date: fact.date, ...fact, source: 'custom' });
+                    }
+                });
+                
+                if (results.length > 0) {
+                    const firstResult = results[0];
+                    const year = parseInt(firstResult.date.split('-')[0]);
+                    const century = Math.ceil(year / 100) || 1;
+                    const decade = Math.floor(year / 10) * 10;
+                    const month = parseInt(firstResult.date.split('-')[1]) - 1;
+                    
+                    selectCentury(century);
+                    setTimeout(() => { selectDecade(decade); }, 300);
+                    setTimeout(() => { selectYear(year); }, 600);
+                    setTimeout(() => { selectMonth(month); }, 900);
+                }
+            });
+        }
+
+        function initStats() {
+            const builtinEvents = Object.values(timelineData).reduce((sum, events) => sum + events.length, 0);
+            const customEventCount = customFacts.length;
+            const totalEventsEl = document.getElementById('totalEvents');
+            if (totalEventsEl) {
+                totalEventsEl.textContent = builtinEvents + customEventCount;
+            }
+        }
+
+        function init() {
+            renderHomeCategories();
+            renderCenturies();
+            initStats();
+            setupSearch();
+            
+            // Close modal on outside click
+            DOM.addFactModal.addEventListener('click', (e) => {
+                if (e.target === DOM.addFactModal) {
+                    closeAddFactModal();
+                }
+            });
+            
+            // Close create fact modal on outside click
+            DOM.createFactModal.addEventListener('click', (e) => {
+                if (e.target === DOM.createFactModal) {
+                    closeCreateFactModal();
+                }
+            });
+        }
+
+        init();
+    </script>
+</body>
+</html>
